@@ -1,0 +1,26 @@
+config:
+  node_agent: 'docker_compose'
+  deploy_template: '.sqa/docker-compose.yml'
+  credentials:
+      - id: mswss_auth_dat
+        variable: IM_AUTH_FILE
+
+sqa_criteria:
+  SvcQC.Dep:
+    repos:
+      im:
+        container: imclient
+        commands:
+          - |
+            #!/bin/bash
+            im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
+
+
+#environment:
+  #JPL_DOCKERPUSH: "kubectl"
+  #JPL_IGNOREFAILURES: "defined"
+  #JPL_DOCKERFORCEBUILD: "enabled"
+  #JPL_WORKSPACEDEBUG: "true"
+  #JPL_WORKSPACEDEBUGTIMEOUT: 45
+
+#timeout: 1200
