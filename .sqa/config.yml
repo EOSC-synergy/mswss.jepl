@@ -13,7 +13,8 @@ sqa_criteria:
         commands:
           - |
             #!/bin/bash
-            im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
+            # Temporarily disabled for the testing of Jenkins
+            echo im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
 
 
 #environment:
