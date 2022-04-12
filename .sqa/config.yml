@@ -15,7 +15,7 @@ sqa_criteria:
         container: imclient
         commands:
           - |
-            #!/bin/bash
+            #!/bin/sh
             ls -l /im/auth/auth.dat
             printf "$(cat /im/auth/auth.dat)" "${MSWSS_TOKEN}" iisas "${OPENSTACK_URL}" "egi.eu" "${MSWSS_TOKEN}" "openid" "eosc-synergy.eu" > ${IM_AUTH_FILE}
             ls -l ${IM_AUTH_FILE}
