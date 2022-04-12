@@ -9,4 +9,5 @@ services:
     hostname: "imclient"
     volumes:
      - ./IM:/IM
+     - ./auth:/im/auth
     entrypoint: [/bin/sleep, infinity]
