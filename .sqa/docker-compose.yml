@@ -4,7 +4,7 @@ services:
   imclient:
     environment:
      - IM_AUTH_FILE
-    image: "grycap/im-client:ec3"
+    image: "eoscsynergy/im-client:1.5.9"
     container_name: "imclient"
     hostname: "imclient"
     volumes:
