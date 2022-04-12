@@ -75,6 +75,7 @@ configure front (
   - max_number_of_nodes: '{{NNODES}}'
     role: grycap.slurm
     slurm_type_of_node: front
+    slurm_version: 19.05.5
     slurm_wn_nodenames: '{{ groups["wn"]|map("extract", hostvars, "ansible_hostname")|list if "wn" in groups else [] }}'
     slurm_vnode_prefix: vnode-
     templates: '{{TEMPLATES}}'
@@ -199,7 +200,7 @@ configure wn (
 - roles:
   - role: grycap.slurm
     slurm_type_of_node: wn
-
+    slurm_version: 19.05.5
 
 @end
 )
