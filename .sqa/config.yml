@@ -18,8 +18,7 @@ sqa_criteria:
             #!/bin/bash
             # Temporarily disabled for the testing of Jenkins
             printf "$(cat /im/auth/auth.dat)" "${MSWSS_TOKEN}" iisas "${OPENSTACK_URL}" "egi.eu" "${MSWSS_TOKEN}" "openid" "eosc-synergy.eu" > ${IM_AUTH_FILE}
-            # echo im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
-            sleep 60
+            im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
 
 
 environment:
