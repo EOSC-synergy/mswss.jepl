@@ -16,9 +16,7 @@ sqa_criteria:
         commands:
           - |
             #!/bin/sh
-            ls -l /im/auth/auth.dat
             printf "$(cat /im/auth/auth.dat)" "${MSWSS_TOKEN}" iisas "${OPENSTACK_URL}" "egi.eu" "${MSWSS_TOKEN}" "openid" "eosc-synergy.eu" > ${IM_AUTH_FILE}
-            cat ${IM_AUTH_FILE}
             #im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
 
 
