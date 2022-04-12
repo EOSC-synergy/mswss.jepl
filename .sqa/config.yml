@@ -1,9 +1,9 @@
 config:
   node_agent: 'docker_compose'
   deploy_template: '.sqa/docker-compose.yml'
-  credentials:
-      - id: mswss_auth_dat
-        variable: IM_AUTH_FILE
+  credentials: []
+      #- id: mswss_auth_dat
+      #  variable: IM_AUTH_FILE
 
 sqa_criteria:
   SvcQC.Dep:
