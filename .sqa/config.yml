@@ -1,9 +1,9 @@
 config:
   node_agent: 'docker_compose'
   deploy_template: '.sqa/docker-compose.yml'
-  credentials: []
-      #- id: mswss_auth_dat
-      #  variable: IM_AUTH_FILE
+  credentials: 
+      - id: mswss_auth_dat
+        variable: IM_AUTH_FILE
 
 sqa_criteria:
   SvcQC.Dep:
@@ -15,7 +15,7 @@ sqa_criteria:
             #!/bin/bash
             # Temporarily disabled for the testing of Jenkins
             # echo im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
-            sleep 300
+            sleep 60
 
 
 #environment:
