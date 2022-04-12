@@ -2,6 +2,8 @@ version: "3.7"
 
 services:
   imclient:
+    environment:
+     - IM_AUTH_FILE
     image: "grycap/im-client:ec3"
     container_name: "imclient"
     hostname: "imclient"

@@ -1,7 +1,15 @@
 config:
   node_agent: 'docker_compose'
   deploy_template: '.sqa/docker-compose.yml'
-  credentials: []
+  credentials:
+      - id: incd_openstack
+        variable: OPENSTACK_URL
+      - id: incd_openstack_id
+        username_var: OPENSTACK_USER
+        password_var: OPENSTACK_PASS
+      - id: upv_im_id
+        username_var: IM_USER
+        password_var: IM_PASS
       #- id: mswss_auth_dat
       #  variable: IM_AUTH_FILE
 
@@ -13,12 +21,14 @@ sqa_criteria:
         commands:
           - |
             #!/bin/bash
+            printf "$(cat /im/auth/auth.dat)" "${IM_USER}" "${IM_PASS}" incd "${OPENSTACK_URL}" "${OPENSTACK_USER}" "${OPENSTACK_PASS}" eosc-synergy default > ${IM_AUTH_FILE}
             # Temporarily disabled for the testing of Jenkins
-            # echo im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
+            im_client.py -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl
             sleep 300
 
 
-#environment:
+environment:
+  IM_AUTH_FILE: "/im/auth.dat"
   #JPL_DOCKERPUSH: "kubectl"
   #JPL_IGNOREFAILURES: "defined"
   #JPL_DOCKERFORCEBUILD: "enabled"
