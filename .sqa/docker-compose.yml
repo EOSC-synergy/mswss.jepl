@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  sphinx:
+  imclient:
     image: "grycap/im-client:ec3"
     container_name: "imclient"
     hostname: "imclient"
