@@ -1,0 +1,4 @@
+# InfrastructureManager auth
+type = InfrastructureManager; username = %s; password = %q
+# OpenStack site using standard user, password, tenant format
+id = %s; type = OpenStack; host = %s; username = %s; password = %q; tenant = %s; domain = %s
