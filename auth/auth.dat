@@ -1,4 +1,4 @@
 # InfrastructureManager auth
 type = InfrastructureManager; token = %s
 # OpenStack site using standard user, password, tenant format
-id = %s; type = OpenStack; host = %s; username = %s; password = %q; tenant = %s; domain = %s
+id = %s; type = OpenStack; auth_version = 3.x_oidc_access_token ; api_version = 1.1; host = %s; username = %s; password = %q; tenant = %s; domain = %s
