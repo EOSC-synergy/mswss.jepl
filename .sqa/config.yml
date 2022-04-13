@@ -25,8 +25,8 @@ sqa_criteria:
             # Temporarily disabled for the testing of Jenkins
             im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl > mswss_im.json
             echo "im_client.py create_wait_outputs return code: $?"
-            INFID=$(jq '[ .infid ]'  ./mswss_im.json)
-            im_client.py -a "${IM_AUTH_FILE}" destroy ${INFID}
+            INFID=$(jq -r '[ .infid ] | .[]' ./mswss_im.json)
+            im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
             echo "im_client.py destroy return code: $?"
 
 environment:
