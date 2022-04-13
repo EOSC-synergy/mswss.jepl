@@ -72,22 +72,22 @@ configure front (
     nfs_mode: front
     role: grycap.nfs
     when: QUEUE_SYSTEM != 'local'
-#  - max_number_of_nodes: '{{NNODES}}'
-#    role: grycap.slurm
-#    slurm_type_of_node: front
-#    slurm_version: 19.05.5
-#    slurm_wn_nodenames: '{{ groups["wn"]|map("extract", hostvars, "ansible_hostname")|list if "wn" in groups else [] }}'
-#    slurm_vnode_prefix: vnode-
-#    templates: '{{TEMPLATES}}'
-#  - galaxy_export_dir: /home/export
-#    galaxy_lrms: '{{ QUEUE_SYSTEM }}'
-#    galaxy_slurm_server_name: '{{ hostvars[groups["front"][0]]["IM_NODE_PRIVATE_IP"]
-#      }}'
-#    role: grycap.galaxy
-#    slurm_galaxy_docker_env_vars:
-#      GALAXY_CONFIG_JOB_CONFIG_FILE: /export/slurm_job_conf.xml
-#      GALAXY_DESTINATIONS_DEFAULT: slurm_cluster
-#      NONUSE: reports,slurmctld,nodejs,condor,slurmd
+  - max_number_of_nodes: '{{NNODES}}'
+    role: grycap.slurm
+    slurm_type_of_node: front
+    slurm_version: 19.05.5
+    slurm_wn_nodenames: '{{ groups["wn"]|map("extract", hostvars, "ansible_hostname")|list if "wn" in groups else [] }}'
+    slurm_vnode_prefix: vnode-
+    templates: '{{TEMPLATES}}'
+  - galaxy_export_dir: /home/export
+    galaxy_lrms: '{{ QUEUE_SYSTEM }}'
+    galaxy_slurm_server_name: '{{ hostvars[groups["front"][0]]["IM_NODE_PRIVATE_IP"]
+      }}'
+    role: grycap.galaxy
+    slurm_galaxy_docker_env_vars:
+      GALAXY_CONFIG_JOB_CONFIG_FILE: /export/slurm_job_conf.xml
+      GALAXY_DESTINATIONS_DEFAULT: slurm_cluster
+      NONUSE: reports,slurmctld,nodejs,condor,slurmd
   vars:
     NNODES: 1
     QUEUE_SYSTEM: slurm
@@ -205,10 +205,10 @@ configure wn (
 @end
 )
 
-#contextualize (
-#   system front configure front step 1
-#   system wn configure wn step 2
-#)
+contextualize (
+   system front configure front step 1
+   system wn configure wn step 2
+)
 
 deploy front 1
-#deploy wn 1
+deploy wn 1
