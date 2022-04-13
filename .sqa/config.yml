@@ -23,10 +23,12 @@ sqa_criteria:
             #!/bin/bash
             printf "$(cat /im/auth/auth.dat)" "${IM_USER}" "${IM_PASS}" ifca "${OPENSTACK_URL}" "${OPENSTACK_USER}" "${OPENSTACK_PASS}" "VO:eosc-synergy.eu" "IFCA local users" > ${IM_AUTH_FILE}
             # Temporarily disabled for the testing of Jenkins
-            im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl > mswss_im.json
+            im_client.py -ll 1 -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" create_wait_outputs /IM/mswss-infrastructure-static.radl > mswss_im.json
             echo "im_client.py create_wait_outputs return code: $?"
+            cat ./mswss_im.json
             INFID=$(jq -r '[ .infid ] | .[]' ./mswss_im.json)
-            im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
+            echo "INFID=${INFID}"
+            im_client.py -ll 1 -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
             echo "im_client.py destroy return code: $?"
 
 environment:
