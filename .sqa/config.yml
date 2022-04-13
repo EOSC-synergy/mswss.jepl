@@ -33,6 +33,8 @@ sqa_criteria:
               echo "INFID=${INFID}"
               im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
               echo "im_client.py destroy return code: $?"
+            else
+              exit ${RETURN_CODE}
             fi
 
 environment:
