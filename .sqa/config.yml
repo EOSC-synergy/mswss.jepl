@@ -25,13 +25,20 @@ sqa_criteria:
             if [ ${RETURN_CODE} -eq 0 ]; then
               INFID=${out/* /}
               echo "INFID=${INFID}"
+              echo ${INFID} > infid
               im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" wait ${INFID}
               RETURN_CODE=$?
               echo "im_client.py wait return code: ${RETURN_CODE}"
+              if [ ${RETURN_CODE} -eq 1 ]; then
+                  im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" getcontmsg ${INFID}
+              fi
               echo "destroying infrastructure ${INFID}"
               im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
             fi
             exit ${RETURN_CODE}
+          - |
+            #!/bin/sh
+            ls -l infid ; cat infid
             
 
 
