@@ -147,7 +147,7 @@ system wn (
   net_interface.0.connection = 'private' and
   disk.0.os.flavour='ubuntu' and
   disk.0.os.version>='20.04' and
-  disk.0.os.name = 'linux'
+  disk.0.os.name = 'linux' and
   cpu.count >= 2 and
   memory.size >= 4g
 )
