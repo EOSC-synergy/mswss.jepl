@@ -45,4 +45,5 @@ environment:
   #JPL_WORKSPACEDEBUG: "true"
   #JPL_WORKSPACEDEBUGTIMEOUT: 45
 
-#timeout: 1200
+# Timeout after no activity in logs for this configuration (not the absolute duration)
+timeout: 3600
