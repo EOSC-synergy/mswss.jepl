@@ -45,6 +45,7 @@ sqa_criteria:
             echo "Customising infrastructure ${INFID}"
             ssh_cmd=$(im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" sshvm ${INFID} 0 1 | tail -1)
             echo "SSH command: ${ssh_cmd}"
+            apk add openssh
             echo hostname | $ssh_cmd
             echo "Destroying infrastructure ${INFID}"
             im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
