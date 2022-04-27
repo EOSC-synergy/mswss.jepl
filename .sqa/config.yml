@@ -46,9 +46,17 @@ sqa_criteria:
             ssh_cmd=$(im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" sshvm ${INFID} 0 1 | tail -1)
             echo "SSH command: ${ssh_cmd}"
             apk add openssh
-            echo hostname | $ssh_cmd
+            $ssh_cmd bash -c git clone https://github.com/MSWSS-EOSC/deployment
+            RETURN_CODE=$?
+            if [ ${RETURN_CODE} -eq 0 ]; then
+              $ssh_cmd bash -c ./deployment/scripts/mswss_galaxy_customise.sh
+              RETURN_CODE=$?
+            fi
             echo "Destroying infrastructure ${INFID}"
             im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
+            
+            echo "Return code: ${RETURN_CODE}"
+            #exit ${RETURN_CODE}
             
             
 
