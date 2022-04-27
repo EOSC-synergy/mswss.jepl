@@ -29,16 +29,26 @@ sqa_criteria:
               im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" wait ${INFID}
               RETURN_CODE=$?
               echo "im_client.py wait return code: ${RETURN_CODE}"
+              echo "Status of the infrastructure ${INFID}:"
+              im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" getstate ${INFID}
               if [ ${RETURN_CODE} -eq 1 ]; then
                   im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" getcontmsg ${INFID}
               fi
-              echo "destroying infrastructure ${INFID}"
-              im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
             fi
             exit ${RETURN_CODE}
           - |
             #!/bin/sh
-            ls -l infid ; cat infid
+            if [ ! -f infid ] ; then
+              exit 1
+            fi
+            INFID=$(cat infid)
+            echo "Customising infrastructure ${INFID}"
+            ssh_cmd=$(im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" sshvm ${INFID} 0 1 | tail -1)
+            echo "SSH command: ${ssh_cmd}"
+            echo hostname | $ssh_cmd
+            echo "Destroying infrastructure ${INFID}"
+            im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
+            
             
 
 
