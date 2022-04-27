@@ -49,7 +49,7 @@ sqa_criteria:
             $ssh_cmd 'bash -c "git clone https://github.com/MSWSS-EOSC/deployment"'
             RETURN_CODE=$?
             if [ ${RETURN_CODE} -eq 0 ]; then
-              $ssh_cmd 'bash -c ./deployment/scripts/mswss_galaxy_customise.sh'
+              $ssh_cmd 'bash ./deployment/scripts/mswss_galaxy_customise.sh'
               RETURN_CODE=$?
             fi
             echo "Destroying infrastructure ${INFID}"
