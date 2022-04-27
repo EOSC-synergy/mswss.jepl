@@ -56,7 +56,8 @@ sqa_criteria:
             im_client.py -r https://appsgrycap.i3m.upv.es:31443/im/ -a "${IM_AUTH_FILE}" destroy ${INFID}
             
             echo "Return code: ${RETURN_CODE}"
-            #exit ${RETURN_CODE}
+            echo
+            exit ${RETURN_CODE}
             
             
 
