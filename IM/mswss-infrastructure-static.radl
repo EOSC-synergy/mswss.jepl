@@ -18,7 +18,7 @@ system front (
   ) and
   cpu.count >= 4 and
   memory.size >= 8g and
-  disk.0.image.url = 'appdb://IISAS-FedCloud/egi.ubuntu.20.04?eosc-synergy.eu'
+  disk.0.image.url = 'appdb://IISAS-FedCloud/ubuntu.20.04.eosc.synergy?eosc-synergy.eu'
 )
 
 network public (
@@ -144,7 +144,7 @@ configure front (
 
 system wn (
   net_interface.0.connection = 'private' and
-  disk.0.image.url = 'appdb://IISAS-FedCloud/egi.ubuntu.20.04?eosc-synergy.eu' and
+  disk.0.image.url = 'appdb://IISAS-FedCloud/ubuntu.20.04.eosc.synergy?eosc-synergy.eu' and
   cpu.count >= 2 and
   memory.size >= 4g
 )
